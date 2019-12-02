@@ -1,6 +1,3 @@
-import { StrategyInterface } from "src/strategies/products/strategy-interface";
-import { StrategyInterface } from "src/strategies/products/strategy-interface";
-
 /**
  * @name ProductModel
  * @author Aélion - Déc. 2019 - jla.webprojet@gmail.com
@@ -29,10 +26,26 @@ export class ProductModel {
      */
     private price: number;
 
-    private strategy: StrategyInterface;
+    /**
+     * @var number
+     * 
+     * Sets the strategy to use to display product line
+     */
+    private strategy: number;
 
-    public constructor(strategy: StrategyInterface) {
-        this.strategy = strategy;
+    /**
+     * 
+     * @param strategy number
+     * 
+     * Sets the strategy to display product line
+     * Only 1, 2 or 3, fallback to 1
+     */
+    public setStrategy(strategy: number): void {
+        if (strategy > 0 && strategy <= 3) {
+            this.strategy = strategy;
+        } else {
+            this.strategy = 1; // Fallback
+        }
     }
 
     public setName(name: string): void {
@@ -62,6 +75,18 @@ export class ProductModel {
     }
 
     public toString(): string {
-        return this.strategy.toString(this);
+        switch (this.strategy) {
+            case 1: // Name only
+                return this.name;
+            break;
+
+            case 2: // Name and price
+                return this.name + ' (' + this.price + '€)';
+            break;
+
+            case 3: // Name, price and unit
+                return this.name + ' (' + this.price + '€) par ' + this.baseUnit; 
+            break;
+        }
     }
 }
