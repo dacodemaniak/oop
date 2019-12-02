@@ -1,3 +1,6 @@
+import { StrategyInterface } from "src/strategies/products/strategy-interface";
+import { StrategyInterface } from "src/strategies/products/strategy-interface";
+
 /**
  * @name ProductModel
  * @author Aélion - Déc. 2019 - jla.webprojet@gmail.com
@@ -19,6 +22,19 @@ export class ProductModel {
      */
     private baseUnit: string;
 
+    /**
+     * @var number
+     * 
+     * Price of a product
+     */
+    private price: number;
+
+    private strategy: StrategyInterface;
+
+    public constructor(strategy: StrategyInterface) {
+        this.strategy = strategy;
+    }
+
     public setName(name: string): void {
         if (this.name == null) {
             this.name = name;
@@ -37,7 +53,15 @@ export class ProductModel {
         return this.baseUnit;
     }
 
+    public setPrice(price: number): void {
+        this.price = price;
+    }
+
+    public getPrice(): number {
+        return this.price;
+    }
+
     public toString(): string {
-        return this.getName() + ' [' + this.baseUnit + ']';
+        return this.strategy.toString(this);
     }
 }
