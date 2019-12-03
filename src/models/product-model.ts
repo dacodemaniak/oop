@@ -1,5 +1,4 @@
-import { StrategyInterface } from "src/strategies/products/strategy-interface";
-import { StrategyInterface } from "src/strategies/products/strategy-interface";
+import { StrategyInterface } from "./../strategies/products/strategy-interface";
 
 /**
  * @name ProductModel
@@ -25,10 +24,24 @@ export class ProductModel {
     /**
      * @var number
      * 
+     * Quantity for baseUnit
+     */
+    private quantityUnit: number;
+
+    /**
+     * @var number
+     * 
      * Price of a product
      */
     private price: number;
 
+    /**
+     * @var StrategyInterface
+     * @see strategies\products\StrategyInterface
+     * 
+     * Strategy to use to print product
+     * 
+     */
     private strategy: StrategyInterface;
 
     public constructor(strategy: StrategyInterface) {
@@ -53,6 +66,10 @@ export class ProductModel {
         return this.baseUnit;
     }
 
+    public setQuantityUnit(quantity: number): void {
+        this.quantityUnit = quantity;
+    }
+    
     public setPrice(price: number): void {
         this.price = price;
     }
