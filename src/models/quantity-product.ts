@@ -1,4 +1,5 @@
 import { ProductModel } from "./product-model";
+import { ConvertHelper } from "./../helpers/convert-helper";
 
 /**
  * @name QuantityProduct
@@ -23,11 +24,22 @@ export class QuantityProduct extends ProductModel {
      */
     private unit: string;
 
+    /**
+     * @var number 
+     * 
+     * Pricing of the product for a receipe
+     */
+    private unitPrice: number;
+
     public setQuantity(quantity: number): void {
         this.quantity = quantity;
     }
 
     public setUnit(unit: string): void {
         this.unit = unit;
+    }
+
+    public setUnitPrice(): void {
+        const convertedQuantity: number = ConvertHelper.weight(this.baseUnit,this.unit,this.quantity);
     }
 }

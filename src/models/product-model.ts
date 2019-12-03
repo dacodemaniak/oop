@@ -1,4 +1,5 @@
 import { StrategyInterface } from "./../strategies/products/strategy-interface";
+import { NameStragegy } from "./../strategies/products/name-strategy";
 
 /**
  * @name ProductModel
@@ -42,7 +43,7 @@ export abstract class ProductModel {
      * Strategy to use to print product
      * 
      */
-    private strategy: StrategyInterface;
+    private strategy: StrategyInterface = new NameStragegy();
 
     /**
      * 
