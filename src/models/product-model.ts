@@ -1,3 +1,5 @@
+import { StrategyInterface } from "./../strategies/products/strategy-interface";
+
 /**
  * @name ProductModel
  * @author Aélion - Déc. 2019 - jla.webprojet@gmail.com
@@ -22,30 +24,33 @@ export class ProductModel {
     /**
      * @var number
      * 
+     * Quantity for baseUnit
+     */
+    private quantityUnit: number;
+
+    /**
+     * @var number
+     * 
      * Price of a product
      */
     private price: number;
 
     /**
-     * @var number
+     * @var StrategyInterface
+     * @see strategies\products\StrategyInterface
      * 
-     * Sets the strategy to use to display product line
+     * Strategy to use to print product
+     * 
      */
-    private strategy: number;
+    private strategy: StrategyInterface;
 
     /**
      * 
-     * @param strategy number
+     * @param strategy StrategyInterface
      * 
-     * Sets the strategy to display product line
-     * Only 1, 2 or 3, fallback to 1
      */
-    public setStrategy(strategy: number): void {
-        if (strategy > 0 && strategy <= 3) {
-            this.strategy = strategy;
-        } else {
-            this.strategy = 1; // Fallback
-        }
+    public setStrategy(strategy: StrategyInterface): void {
+        this.strategy = strategy;
     }
 
     public setName(name: string): void {
@@ -66,6 +71,10 @@ export class ProductModel {
         return this.baseUnit;
     }
 
+    public setQuantityUnit(quantity: number): void {
+        this.quantityUnit = quantity;
+    }
+    
     public setPrice(price: number): void {
         this.price = price;
     }
@@ -75,18 +84,6 @@ export class ProductModel {
     }
 
     public toString(): string {
-        switch (this.strategy) {
-            case 1: // Name only
-                return this.name;
-            break;
-
-            case 2: // Name and price
-                return this.name + ' (' + this.price + '€)';
-            break;
-
-            case 3: // Name, price and unit
-                return this.name + ' (' + this.price + '€) par ' + this.baseUnit; 
-            break;
-        }
+        return this.strategy.toString(this);
     }
 }

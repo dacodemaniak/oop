@@ -1,5 +1,9 @@
 import { ProductModel } from "./models/product-model";
-
+import { StrategyInterface } from "./strategies/products/strategy-interface";
+import { NameStragegy } from "./strategies/products/name-strategy";
+import { NamePriceStragegy } from "./strategies/products/name-price-strategy";
+import { NamePriceUnitStrategy } from "./strategies/products/name-price-unit";
+import { Recette } from "./models/recette";
 /**
  * @name Main
  * @author Aélion - Déc. 2019 - jla.webprojet@gmail.com
@@ -8,7 +12,7 @@ import { ProductModel } from "./models/product-model";
  * Entry point of the application
  */
 
- const strategy: number = 3;
+ const strategy: StrategyInterface = new NameStragegy();
 
  let produit1: ProductModel = new ProductModel();
  produit1.setStrategy(strategy);
@@ -22,6 +26,13 @@ produit2.setName('Lait');
 produit2.setBaseUnit('l');
 produit2.setPrice(0.94);
 
-console.log('Pour faire des crèpes, j\'ai besoin de : \n');
-console.log(produit1.toString());
-console.log(produit2.toString());
+const lesCrepes: Recette = new Recette('Crèpes');
+lesCrepes.addProduct(produit1);
+lesCrepes.addProduct(produit2);
+
+const lesGaufres: Recette = new Recette('Gauffres');
+lesGaufres.addProduct(produit1);
+
+console.log(lesCrepes.toString());
+
+console.log(lesGaufres.toString());
