@@ -1,7 +1,7 @@
-import { ProductModel } from "./product-model";
+import { QuantityProduct } from "./quantity-product";
 
 export class Recette {
-    private ingredients: Array<ProductModel> = new Array<ProductModel>();
+    private ingredients: Array<QuantityProduct> = new Array<QuantityProduct>();
 
     private title: string;
 
@@ -9,7 +9,7 @@ export class Recette {
         this.title = title;
     }
 
-    public addProduct(product: ProductModel): void {
+    public addProduct(product: QuantityProduct): void {
         this.ingredients.push(product);
     }
 
@@ -17,7 +17,7 @@ export class Recette {
         let theRecette: string = 'La recette des ' + this.title + '\n';
 
         // Loop over ingredients array
-        this.ingredients.forEach((value: ProductModel) => {
+        this.ingredients.forEach((value: QuantityProduct) => {
             theRecette += value.toString() + '\n';
             // ASA theRecette = theRecette + value.toString()
         });

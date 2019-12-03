@@ -6,34 +6,34 @@ import { StrategyInterface } from "./../strategies/products/strategy-interface";
  * @version 1.0.0
  * @package models
  */
-export class ProductModel {
+export abstract class ProductModel {
     /**
      * @var string
      * 
      * Name of the product (i.e : Lait, Farine, Oeuf, ...)
      */
-    private name: string;
+    protected name: string;
 
     /**
      * @var string
      * 
      * Base unit for the quantities of a product (i.e : l, kg, unity, ...)
      */
-    private baseUnit: string;
+    protected baseUnit: string;
 
     /**
      * @var number
      * 
      * Quantity for baseUnit
      */
-    private quantityUnit: number;
+    protected quantityUnit: number;
 
     /**
      * @var number
      * 
      * Price of a product
      */
-    private price: number;
+    protected price: number;
 
     /**
      * @var StrategyInterface
