@@ -1,0 +1,227 @@
+<!doctype html>
+<html><!-- Balise racine du document HTML -->
+    <head>
+        <meta charset="utf-8">
+
+        <title>Receipe rentability by Aélion</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/css/styles.css">
+    </head>
+
+    <body>
+        <div class="container">
+
+            <header class="row">
+                <h1 class="col-12">Receipe rentability</h1>
+            </header>
+
+            <main class="row">
+                <section id="receipe-forms" class="col-lg-4 col-12">
+                    <!-- First : receipe creation form -->
+                    <form>
+                        <fieldset>
+                            <div class="row">
+                                <div class="col">
+                                    <input
+                                        type="text"
+                                        name="receipe-title"
+                                        id="receipe-title"
+                                        placeholder="Receipe title..."
+                                        class="form-control"
+                                    >
+                                </div>
+                                <div class="col">
+                                    <input
+                                        type="number"
+                                        name="receipe-quantity"
+                                        id="receipe-quantity"
+                                        min="0"
+                                        max="50"
+                                        step="5"
+                                        placeholder="Receipe quantity..."
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            </fieldset>
+
+                            <fieldset>                           
+                                <div class="row float-right">
+                                    <div class="col">
+                                        <button 
+                                            type="button" 
+                                            name="create-receipe"
+                                            id="create-receipe"
+                                            disabled
+                                            class="btn btn-outline-success"
+                                        >
+                                            Créer
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                    </form>
+
+                    <!-- Ingredient form -->
+                    <form id="ingredient-form">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col">
+                                    <input
+                                        type="text"
+                                        name="ingredient-title"
+                                        id="ingredient-title"
+                                        placeholder="Ingredient name..."
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <input
+                                        type="number"
+                                        name="ingredient-quantity"
+                                        id="ingredient-quantity"
+                                        min="1"
+                                        placeholder="Ingredient quantity..."
+                                        class="form-control"
+                                    >
+                                </div>
+                                <div class="col">
+                                    <!-- Popup -->
+                                    <select class="form-control" name="target-unit" id="target-unit" size="1">
+                                        <option value="" disabled selected>Sélectionnez...</option>
+                                        <option value="g">Grammes</option>
+                                        <option value="cl">Centilitres</option>
+                                        <option value="unite">Unités</option>
+                                    </select>                     
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col input-group">
+                                    <input type="number" name="ingredient-price" id="ingredient-price" class="form-control" placeholder="Ingredient price">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">&euro;</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- Popup -->
+                                    <select class="form-control" name="base-unit" id="base-unit" size="1">
+                                        <option value="" disabled selected>Select...</option>
+                                        <option value="kg">Kilos</option>
+                                        <option value="l">Litres</option>
+                                        <option value="cl">Centilitres</option>
+                                        <option value="unite">Unités</option>
+                                    </select>  
+                                </div>  
+                            </div>
+
+
+                            <div class="row float-right">
+                                <div class="col">
+                                    <label for="unit-quantity">
+                                        Given quantity :
+                                    </label>
+                                    <input
+                                        type="number"
+                                        name="unit-quantity"
+                                        id="unit-quantity"
+                                        value="1"
+                                        min="1"
+                                        class="form-control"
+                                        placeholder="Given quantity..."
+                                    >
+                                </col>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="button-group">
+                            <button
+                                type="button"
+                                disabled
+                                name="add-and-next"
+                                id="add-and-next"
+                                class="btn btn-primary"
+                            >Add and continue</button>
+                            <button
+                                type="button"
+                                disabled
+                                name="add-and-close"
+                                id="add-and-close"
+                                class="btn btn-primary"
+                            >Add and close</button>                            
+                        </fieldset>
+                    </form>
+
+                </section>
+
+                <aside id="receipe-results" class="col-lg-8 col-12">
+                    <!-- Results of the receipe -->
+                    <table class="table table-condensed table-striped">
+                        <thead> <!-- Header of table-->
+                            <tr> <!-- Table Row -->
+                                <th class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="select-all-ingredients" id="select-all">
+                                </th> <!-- Header cell -->
+                                <th>Ingrédient</th>
+                                <th>Quantité</th>
+                                <th>Coût unitaire (&euro;)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody> <!-- Rows of the table -->
+                            <tr>
+                                <td class="form-check"> <!-- Table divider -->
+                                    <input class="form-check-input" type="checkbox" name="select-farine" id="select-farine">
+                                </td>
+                                <td>Farine</td>
+                                <td>300g</td>
+                                <td>0,54&euro;</td>
+                            </tr>
+                            <tr>
+                                <td class="form-check"> <!-- Table divider -->
+                                    <input class="form-check-input" type="checkbox" name="select-farine" id="select-farine">
+                                </td>
+                                <td>Farine</td>
+                                <td>300g</td>
+                                <td>0,54&euro;</td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot> <!-- Footer of the table -->
+                            <tr>
+                                <td colspan="3">
+                                    Receipe total :
+                                </td>
+                                <td class="total-receipe">
+                                    99,99€
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">
+                                    Cost of a piece of receipe :
+                                </td>
+                                <td class="total-receipe">
+                                    99,99€
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </aside>
+            </main>
+
+            <footer class="row">
+                <ul class="list-unstyled"> <!-- Conteneur de lignes de liste-->
+                    <li>Mentions légales</li>
+                    <li>CGU</li>
+                    <li>&copy; Aélion 2019</li>
+                </ul>
+            </footer>
+        </div>
+    </body>
+</html>

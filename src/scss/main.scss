@@ -1,0 +1,16 @@
+/**
+* @name main
+* @author Aélion - Déc. 2019
+* @version 1.0.0
+*   SCSS entry point for CSS building
+**/
+
+
+/**
+* Imports other scss modules
+**/
+
+@import "./variables.scss";
+body {
+    background-color: $background_color;
+}

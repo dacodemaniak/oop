@@ -12,6 +12,8 @@ import { QuantityProduct } from "./models/quantity-product";
  * Entry point of the application
  */
 
+ import "./scss/main.scss";
+ 
  const strategy: StrategyInterface = new NameStragegy();
 
  let produit1: QuantityProduct = new QuantityProduct();
