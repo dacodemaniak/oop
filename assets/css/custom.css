@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/**
+* @name main
+* @author Aélion - Déc. 2019
+* @version 1.0.0
+*   SCSS entry point for CSS building
+**/
+/**
+* Imports other scss modules
+**/
+/**
+* @name variables
+* @author Aélion - Déc. 2019
+* @version 1.0.0
+*   Theme variables
+**/
+body {
+  background-color: gray;
+}
+
+/*# sourceMappingURL=custom.css.map*/

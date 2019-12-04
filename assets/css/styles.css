@@ -1,0 +1,10 @@
+/**
+* @name styles.css
+* @author Aélion - Déc. 2019
+* @version 1.0.0
+**/
+
+body {
+    /** Selector **/
+    background-color: rgba(128, 128, 128, .7);
+}
