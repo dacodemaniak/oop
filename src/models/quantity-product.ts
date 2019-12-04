@@ -29,7 +29,7 @@ export class QuantityProduct extends ProductModel {
      * 
      * Pricing of the product for a receipe
      */
-    private unitPrice: number;
+    private unitPrice: number = 0;
 
     public setQuantity(quantity: number): void {
         this.quantity = quantity;
@@ -40,6 +40,16 @@ export class QuantityProduct extends ProductModel {
     }
 
     public setUnitPrice(): void {
-        const convertedQuantity: number = ConvertHelper.weight(this.baseUnit,this.unit,this.quantity);
+        const convertedQuantity: number = ConvertHelper.convert(this.baseUnit,this.unit,this.quantity);
+        
+        if (this.quantityUnit != null) {
+            this.unitPrice = (this.price / this.quantityUnit) * convertedQuantity;
+        } else {
+            this.unitPrice = (this.price * convertedQuantity);
+        }
+    }
+
+    public getUnitPrice(): number {
+        return this.unitPrice;
     }
 }

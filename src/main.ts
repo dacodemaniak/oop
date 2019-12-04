@@ -60,6 +60,8 @@ produit6.setQuantity(50);
 produit6.setUnit('g');
 
 const lesCrepes: Recette = new Recette('Crèpes');
+lesCrepes.setQuantity(15);
+
 lesCrepes.addProduct(produit1);
 lesCrepes.addProduct(produit2);
 lesCrepes.addProduct(produit3);

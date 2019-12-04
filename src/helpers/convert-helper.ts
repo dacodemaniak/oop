@@ -92,8 +92,4 @@ export abstract class ConvertHelper {
         }
         return quantity;
     }
-
-    private static to(baseUnit: string, quantityUnit: string, quantity: number): number {
-
-    }
 }
