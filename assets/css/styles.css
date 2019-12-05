@@ -4,7 +4,39 @@
 * @version 1.0.0
 **/
 
-body {
-    /** Selector **/
-    background-color: rgba(128, 128, 128, .7);
+#receipe-results table.table thead th {
+    border-bottom: none;
+}
+
+#receipe-results table.table tfoot td[colspan="3"] {
+    text-align: right;
+}
+
+#receipe-results table.table tfoot td.total-receipe {
+    font-weight: bold;
+    color: var(--gray);
+}
+
+#receipe-results table.table tfoot td {
+    border-top: none;
+}
+
+
+/**
+* Forms and fieldsets
+**/
+
+form fieldset {
+    padding-bottom: 1em;
+}
+
+
+/**
+* CSS Tricks for numbers
+**/
+
+#ingredient-price::-webkit-inner-spin-button,
+#ingredient-price::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
