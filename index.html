@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- Add js sources -->
+    <script src="./dist/js/app.chunk.js"></script>
+    <script src="./dist/js/app.js"></script>   
 </head>
 
 <body>
@@ -23,7 +27,7 @@
         <main class="row">
             <section id="receipe-forms" class="col-lg-4 col-12">
                 <!-- First : receipe creation form -->
-                <form>
+                <form id="receipe-form">
                     <fieldset>
                         <div class="row">
                             <div class="col">
@@ -38,7 +42,7 @@
                     <fieldset>
                         <div class="row float-right">
                             <div class="col">
-                                <button type="button" name="create-receipe" id="create-receipe" disabled class="btn btn-outline-success">
+                                <button type="button" name="create-receipe" id="create-receipe" class="btn btn-outline-success">
                                     Créer
                                 </button>
                             </div>
@@ -47,7 +51,7 @@
                 </form>
 
                 <!-- Ingredient form -->
-                <form id="ingredient-form">
+                <form id="ingredient-form" class="hidden-form">
                     <fieldset>
                         <div class="row">
                             <div class="col">
@@ -69,13 +73,24 @@
                                 </select>
                             </div>
                         </div>
-
+                    </fieldset>
+                    <fieldset>
                         <div class="row">
                             <div class="col input-group">
                                 <input type="number" name="ingredient-price" id="ingredient-price" class="form-control" placeholder="Ingredient price">
                                 <div class="input-group-append">
                                     <span class="input-group-text">&euro;</span>
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="unit-quantity" class="form-label">
+                                    For :
+                            </label>
+                            <div class="col">
+                                <input type="number" name="unit-quantity" id="unit-quantity" value="1" min="1" class="form-control">
                             </div>
                             <div class="col">
                                 <!-- Popup -->
@@ -86,17 +101,6 @@
                                     <option value="cl">Centilitres</option>
                                     <option value="unite">Unités</option>
                                 </select>
-                            </div>
-                        </div>
-
-
-                        <div class="row float-right">
-                            <div class="col">
-                                <label for="unit-quantity">
-                                    Given quantity :
-                                </label>
-                                <input type="number" name="unit-quantity" id="unit-quantity" value="1" min="1" class="form-control" placeholder="Given quantity...">
-                                </col>
                             </div>
                     </fieldset>
 
@@ -203,7 +207,7 @@
                 </li>
             </ul>
         </footer>
-        </div>
+    </div> 
 </body>
 
 </html>

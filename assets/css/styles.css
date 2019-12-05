@@ -30,6 +30,10 @@ form fieldset {
     padding-bottom: 1em;
 }
 
+form.hidden-form {
+    display: none;
+}
+
 
 /**
 * CSS Tricks for numbers
