@@ -1,5 +1,6 @@
 import * as $ from 'jquery';
 import { ReceipeFormModule } from './modules/receipe-form-module';
+import { IngredientFormModule } from './modules/ingredient-form-module';
 
 /**
  * @name Main
@@ -10,6 +11,7 @@ import { ReceipeFormModule } from './modules/receipe-form-module';
 export class Main {
     public constructor() {
         new ReceipeFormModule();
+        new IngredientFormModule();
     }
 }
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.min.css">
 
     <!-- Add js sources -->
     <script src="./dist/js/app.chunk.js"></script>
@@ -42,7 +43,7 @@
                     <fieldset>
                         <div class="row float-right">
                             <div class="col">
-                                <button type="button" name="create-receipe" id="create-receipe" class="btn btn-outline-success">
+                                <button type="button" name="create-receipe" id="create-receipe" disabled class="btn btn-outline-success">
                                     Créer
                                 </button>
                             </div>
@@ -53,6 +54,9 @@
                 <!-- Ingredient form -->
                 <form id="ingredient-form" class="hidden-form">
                     <fieldset>
+                        <legend>
+                            Please enter ingredients for <span></span>
+                        </legend>
                         <div class="row">
                             <div class="col">
                                 <input type="text" name="ingredient-title" id="ingredient-title" placeholder="Ingredient name..." class="form-control">
@@ -66,7 +70,7 @@
                             <div class="col">
                                 <!-- Popup -->
                                 <select class="form-control" name="target-unit" id="target-unit" size="1">
-                                    <option value="" disabled selected>Sélectionnez...</option>
+                                    <option value="" disabled selected>Select...</option>
                                     <option value="g">Grammes</option>
                                     <option value="cl">Centilitres</option>
                                     <option value="unite">Unités</option>
@@ -105,9 +109,9 @@
                     </fieldset>
 
                     <fieldset class="button-group">
-                        <button type="button" disabled name="add-and-next" id="add-and-next" class="btn btn-primary">Add
+                        <button type="button" addIngredientButton disabled name="add-and-next" id="add-and-next" class="btn btn-primary">Add
                             and continue</button>
-                        <button type="button" disabled name="add-and-close" id="add-and-close" class="btn btn-primary">Add and close</button>
+                        <button type="button" addIngredientButton disabled name="add-and-close" id="add-and-close" class="btn btn-primary">Add and close</button>
                     </fieldset>
                 </form>
 
