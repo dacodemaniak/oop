@@ -1,7 +1,13 @@
 import * as $ from 'jquery';
+import { FormModule } from './form-module';
 
-export class ReceipeFormModule {
+export class ReceipeFormModule extends FormModule {
     public constructor() {
+        super();
+
+        this.form = $('#receipe-form');
+        this.getFormFields();
+
         this.setCreateButtonHandler();
         this.setFormKeyupHandler();
     }
@@ -22,16 +28,15 @@ export class ReceipeFormModule {
     }
 
     private setFormKeyupHandler(): void {
-        $('#receipe-form').on(
+        this.form.on(
             'keyup change',
-            (event: any): void => this.checkFormFill(event)
+            (event: any): void => this.checkForm(event)
         );
     }
     
-    private checkFormFill(event: any): void {
+    private checkForm(event: any): void {
         if (
-            $('#receipe-title').val().toString().trim() != '' &&
-            $('#receipe-quantity').val().toString().trim() != ''
+            !super.checkFormFill(event)
         ) {
             $('#create-receipe').removeAttr('disabled');
         } else {

@@ -135,25 +135,7 @@
                     </thead>
 
                     <tbody>
-                        <!-- Rows of the table -->
-                        <tr>
-                            <td class="form-check">
-                                <!-- Table divider -->
-                                <input class="form-check-input" type="checkbox" name="select-farine" id="select-farine">
-                            </td>
-                            <td>Farine</td>
-                            <td>300g</td>
-                            <td>0,54&euro;</td>
-                        </tr>
-                        <tr>
-                            <td class="form-check">
-                                <!-- Table divider -->
-                                <input class="form-check-input" type="checkbox" name="select-farine" id="select-farine">
-                            </td>
-                            <td>Farine</td>
-                            <td>300g</td>
-                            <td>0,54&euro;</td>
-                        </tr>
+                        <!-- Dynamically hydrated -->
                     </tbody>
 
                     <tfoot>
@@ -162,8 +144,8 @@
                             <td colspan="3">
                                 Receipe total :
                             </td>
-                            <td class="total-receipe">
-                                99,99€
+                            <td id="total-receipe" class="total-receipe">
+                                0€
                             </td>
                         </tr>
 
@@ -171,8 +153,8 @@
                             <td colspan="3">
                                 Cost of a piece of receipe :
                             </td>
-                            <td class="total-receipe">
-                                99,99€
+                            <td id="one-piece-total" class="total-receipe">
+                                0€
                             </td>
                         </tr>
                     </tfoot>

@@ -1,17 +1,17 @@
 import * as $ from 'jquery';
 import { ReceipeFormModule } from './receipe-form-module';
+import { FormModule } from './form-module';
 
-export class IngredientFormModule {
-
-    private form: JQuery = $('#ingredient-form');
-
-    private fields: Array<JQuery> = new Array();
+export class IngredientFormModule extends FormModule {
 
     private addAndContinue: JQuery = $('#add-and-next');
     private addAndStop: JQuery = $('#add-and-close');
-
+    private checkAll: JQuery = $('#select-all');
     
     public constructor() {
+        super();
+
+        this.form = $('#ingredient-form');
 
         this.getFormFields();
 
@@ -23,7 +23,7 @@ export class IngredientFormModule {
     private setEventHandlers() {
         this.form.on(
             'keyup change',
-            (event: any): void => this.checkFormFill(event)         
+            (event: any): void => this.checkForm(event)         
         );
 
         this.addAndContinue.on(
@@ -35,7 +35,35 @@ export class IngredientFormModule {
             'click',
             (event: any): void => this.addIngredientAndStop(event)
         );
+
+        this.checkAll.on(
+            'click',
+            (event: any): void => this.checkAllCheckboxes()
+        );
+
+        $('tbody').on(
+            'click',
+            '.ingredient-selection',
+            (event: any) => this.manageSelectAllCheckboxes(event)
+        )
     }
+    
+    private manageSelectAllCheckboxes(event: any): any {
+        if ($('tbody .ingredient-selection:checked').length == $('tbody tr').length) {
+            this.checkAll.prop('checked', true);
+        } else {
+            this.checkAll.prop('checked', false);
+        }
+    }
+
+    private checkAllCheckboxes(): void {
+        console.log('Check or uncheck');
+        if (this.checkAll.is(':checked')) {
+            $('tbody .ingredient-selection').prop('checked', true);
+        } else {
+            $('tbody .ingredient-selection').prop('checked', false);
+        }
+1    }
 
     private addIngredientAndStop(event: any): void {
         // Reset form...
@@ -45,6 +73,8 @@ export class IngredientFormModule {
         // Sure not Hobiwan...
         this.form.children('fieldset').children('legend').children('span').html('');
 
+
+        this.addRow();
 
         this.form
             .removeClass('fadeInUp')
@@ -56,12 +86,16 @@ export class IngredientFormModule {
             this.form.addClass('hidden-form');
         }, 1500);
 
-        // Then reset the previous form... but... don't forget you got a receipe-form-module...
+        // Then reset the previous form... 
+        // but... don't forget you got a receipe-form-module...
         // So use it
         ReceipeFormModule.resetForm();
     }
     
     private addIngredient(event: any): void {
+        // Add a row in the table
+        this.addRow();
+
         // Reset form too...
         this.resetForm();
     }
@@ -85,40 +119,45 @@ export class IngredientFormModule {
         // Don't forget to disable buttons... but it's so easy
         $('[addIngredientButton]').attr('disabled', 'disabled');
     }
-    private checkFormFill(event: any): void {
-        let fieldValue: string;
-        let numberOfError: number = 0;
 
-        for (let field of this.fields) {
-            if (field.is('input')) {
-                fieldValue = field.val().toString().trim();
-            } else {
-                fieldValue = field.children('option:selected').val().toString();
-            }
+    private addRow(): void {
+        const tableRow: JQuery = $('<tr>'); // Add an HTML Element in DOM
 
-            if (fieldValue == '') {
-                numberOfError = numberOfError + 1;
-            }
-        }
-        // At the end...
-        if (numberOfError === 0) {
+        const checkboxCell: JQuery = $('<td>');
+        // Create a checkbox and add it to the cell
+        const checkbox: JQuery = $('<input>');
+        checkbox.attr('type', 'checkbox');
+        checkbox.addClass('ingredient-selection');
+        let tableLength: number = $('aside#receipe-results table tbody tr').length + 1;
+        console.log(`Next checkbox id : ${tableLength}`);
+        checkbox.attr('id', 'ingredient-' + tableLength);
+        checkboxCell.append(checkbox);
+
+        const ingredientTitleCell: JQuery = $('<td>');
+        ingredientTitleCell.html($('#ingredient-title').val().toString());
+
+        const ingredientQuantityCell: JQuery = $('<td>');
+        ingredientQuantityCell.html($('#ingredient-quantity').val().toString());
+
+        const unitPriceCell: JQuery = $('<td>');
+
+        // Add cells to row
+        tableRow
+            .append(checkboxCell)
+            .append(ingredientTitleCell)
+            .append(ingredientQuantityCell)
+            .append(unitPriceCell);
+        
+        // Add row to tbody
+        $('aside#receipe-results table tbody').append(tableRow);
+    }
+
+    private checkForm(event: any): void {
+        if (!super.checkFormFill(event)) {
             // Yeah guys... let's play
             $('[addIngredientButton]').removeAttr('disabled');
         } else {
             $('[addIngredientButton]').attr('disabled', 'disabled');
-        }
-    }
-
-    private getFormFields(): void {
-        const fieldTypes: any = {
-            field: 'input',
-            list: 'select'
-        };
-
-        for (const key in fieldTypes) {
-            this.form.find(fieldTypes[key]).each((index: number, element: HTMLElement) => {
-                this.fields.push($(element));
-            });
         }
     }
 }
