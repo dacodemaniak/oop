@@ -24,10 +24,6 @@ export class IngredientFormModule extends FormModule {
 
         // Sets the event handlers
         this.setEventHandlers();
-
-
-
-        console.log('La recette : ' + JSON.stringify(this.receipe.getRecette()));
     }
     
     private setEventHandlers() {
@@ -163,6 +159,10 @@ export class IngredientFormModule extends FormModule {
         
         // Add row to tbody
         $('aside#receipe-results table tbody').append(tableRow);
+
+        // Update totals...
+        $('#receipe-total').html(this.receipe.getRecette().getReceipePrice().toFixed(2));
+        $('#one-piece-total').html(this.receipe.getRecette().getUnitPrice().toFixed(2));
     }
 
     private createObject(): QuantityProduct {
