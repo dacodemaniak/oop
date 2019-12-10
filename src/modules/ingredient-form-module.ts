@@ -2,23 +2,32 @@ import * as $ from 'jquery';
 import { ReceipeFormModule } from './receipe-form-module';
 import { FormModule } from './form-module';
 import { QuantityProduct } from './../models/quantity-product';
+import { Recette } from './../models/recette';
 
 export class IngredientFormModule extends FormModule {
 
     private addAndContinue: JQuery = $('#add-and-next');
     private addAndStop: JQuery = $('#add-and-close');
     private checkAll: JQuery = $('#select-all');
-    
-    public constructor() {
+
+    private receipe: ReceipeFormModule;
+
+    // Dependency Injection : Ingredient depends on Receipe
+    public constructor(receipe: ReceipeFormModule) {
         super();
 
         this.form = $('#ingredient-form');
+
+        this.receipe = receipe; // Retrieve DI
 
         this.getFormFields();
 
         // Sets the event handlers
         this.setEventHandlers();
 
+
+
+        console.log('La recette : ' + JSON.stringify(this.receipe.getRecette()));
     }
     
     private setEventHandlers() {
@@ -166,8 +175,10 @@ export class IngredientFormModule extends FormModule {
         ingredient.setUnit($('#target-unit').children('option:selected').val().toString());
         ingredient.setQuantityUnit(parseInt($('#unit-quantity').val().toString()));
 
-        // Compute the unit price...
-        ingredient.setUnitPrice();
+        // DI using : from ReceipeFormModule, gets Recette object and push ingredient
+        this.receipe.getRecette().addProduct(ingredient);
+        
+        console.log('Receipe updated : ' + JSON.stringify(this.receipe.getRecette()));
 
         return ingredient;
     }
