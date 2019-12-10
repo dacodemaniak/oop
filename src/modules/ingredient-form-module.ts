@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { ReceipeFormModule } from './receipe-form-module';
 import { FormModule } from './form-module';
+import { QuantityProduct } from './../models/quantity-product';
 
 export class IngredientFormModule extends FormModule {
 
@@ -121,6 +122,8 @@ export class IngredientFormModule extends FormModule {
     }
 
     private addRow(): void {
+        const ingredient: QuantityProduct = this.createObject();
+
         const tableRow: JQuery = $('<tr>'); // Add an HTML Element in DOM
 
         const checkboxCell: JQuery = $('<td>');
@@ -134,12 +137,13 @@ export class IngredientFormModule extends FormModule {
         checkboxCell.append(checkbox);
 
         const ingredientTitleCell: JQuery = $('<td>');
-        ingredientTitleCell.html($('#ingredient-title').val().toString());
+        ingredientTitleCell.html(ingredient.getName());
 
         const ingredientQuantityCell: JQuery = $('<td>');
-        ingredientQuantityCell.html($('#ingredient-quantity').val().toString());
+        ingredientQuantityCell.html(ingredient.getQuantity() + ' ' + ingredient.getUnit());
 
         const unitPriceCell: JQuery = $('<td>');
+        unitPriceCell.html(ingredient.getUnitPrice().toString());
 
         // Add cells to row
         tableRow
@@ -150,6 +154,22 @@ export class IngredientFormModule extends FormModule {
         
         // Add row to tbody
         $('aside#receipe-results table tbody').append(tableRow);
+    }
+
+    private createObject(): QuantityProduct {
+        const ingredient: QuantityProduct = new QuantityProduct();
+
+        ingredient.setName($('#ingredient-title').val().toString());
+        ingredient.setBaseUnit($('#base-unit').children('option:selected').val().toString());
+        ingredient.setPrice(parseFloat($('#ingredient-price').val().toString()));
+        ingredient.setQuantity(parseInt($('#ingredient-quantity').val().toString()));
+        ingredient.setUnit($('#target-unit').children('option:selected').val().toString());
+        ingredient.setQuantityUnit(parseInt($('#unit-quantity').val().toString()));
+
+        // Compute the unit price...
+        ingredient.setUnitPrice();
+
+        return ingredient;
     }
 
     private checkForm(event: any): void {

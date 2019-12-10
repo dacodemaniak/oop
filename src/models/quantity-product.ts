@@ -35,10 +35,18 @@ export class QuantityProduct extends ProductModel {
         this.quantity = quantity;
     }
 
+    public getQuantity(): number {
+        return this.quantity;
+    }
+
     public setUnit(unit: string): void {
         this.unit = unit;
     }
 
+    public getUnit(): string {
+        return this.unit;
+    }
+    
     public setUnitPrice(): void {
         const convertedQuantity: number = ConvertHelper.convert(this.baseUnit,this.unit,this.quantity);
         

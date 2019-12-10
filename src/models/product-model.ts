@@ -76,6 +76,7 @@ export abstract class ProductModel {
         this.quantityUnit = quantity;
     }
     
+    
     public setPrice(price: number): void {
         this.price = price;
     }
