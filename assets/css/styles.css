@@ -73,3 +73,8 @@ div.outer-modal div.inner-modal {
 div.outer-modal.hidden {
     display: none;
 }
+
+div.outer-modal div.inner-modal div.footer {
+    display: flex;
+    justify-content: flex-end;
+}

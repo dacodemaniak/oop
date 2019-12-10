@@ -3,6 +3,7 @@ import { ReceipeFormModule } from './receipe-form-module';
 import { FormModule } from './form-module';
 import { QuantityProduct } from './../models/quantity-product';
 import { Recette } from './../models/recette';
+import { ModalModule } from './modal-module';
 
 export class IngredientFormModule extends FormModule {
 
@@ -24,6 +25,14 @@ export class IngredientFormModule extends FormModule {
 
         // Sets the event handlers
         this.setEventHandlers();
+    }
+    
+    public getReceipeTitle(): string {
+        return this.receipe.getRecette().getTitle();
+    }
+
+    public getReceipe(): Recette {
+        return this.receipe.getRecette();
     }
     
     private setEventHandlers() {
@@ -78,9 +87,6 @@ export class IngredientFormModule extends FormModule {
         // Hey Dude, did you think at the span of the legend ?
         // Sure not Hobiwan...
         this.form.children('fieldset').children('legend').children('span').html('');
-
-
-        this.addRow();
 
         this.form
             .removeClass('fadeInUp')
